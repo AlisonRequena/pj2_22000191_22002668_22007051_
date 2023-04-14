@@ -12,6 +12,7 @@ import java.util.Scanner;
 */
 public class AFD{
 	
+	String finales;
 	/*
 		Implemente el constructor de la clase AFD
 		que recibe como argumento un string que 
@@ -24,7 +25,7 @@ public class AFD{
 		try {
 			Scanner scanner = new Scanner(file);
 			String estados = scanner.nextLine();
-			String finales = scanner.nextLine();
+			 finales = scanner.nextLine();
 			String[] lenguaje = scanner.nextLine().split(",");
 			ArrayList<String> caracteres = new ArrayList<String>();
 			for (int j = 0; j < lenguaje.length; j++) {
@@ -85,6 +86,31 @@ public class AFD{
 		es un estado final, y false si no lo es
 	*/
 	public boolean isFinal(int currentState){
-		return true;
+
+		boolean salida = false;
+		int lengthF = finales.length();
+
+                 if( lengthF >  1 ){
+                        String[] arrayFinales = finales.split(",");
+                        int arrayLength = arrayFinales.length;
+
+                        for(int i = 0; i<arrayLength ; i++){
+                            int intArrFinales = Integer.parseInt(arrayFinales[i]);
+                            if(currentState == intArrFinales ){
+                                salida = true;   
+                            }
+                        }
+
+                  }if(lengthF == 1){ 
+ 
+                    System.out.println("Char");
+                    int intFinales  = Integer.parseInt(finales);
+
+                    if(currentState == intFinales ){
+
+                        salida =  true;
+                    }
+                }
+		return salida; 
 	}
 }
